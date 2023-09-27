@@ -35,5 +35,18 @@ int main() {
 
     printf("Connected to the server"); // print port followed by newline
 
+    bzero(buffer, 1024); // intializes buffer with 1024 bytes
+    strcpy(buffer, "HELLO, THIS IS CLIENT.");
+    printf("Client: %s\n", buffer);
+    send(sock, buffer, strlen(buffer), 0);
+
+    bzero(buffer, 1024);
+    recv(sock, buffer, sizeof(buffer), 0);
+    printf("Server: %s\n", buffer);
+
+    close(sock);
+    printf("Disconnected from server");
+
+
     return 0;
 }
